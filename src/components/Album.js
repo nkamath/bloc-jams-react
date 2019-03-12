@@ -12,6 +12,7 @@ class Album extends Component {
      this.state = {
        album: album,
        currentSong: album.songs[0],
+       mouseFocusSong: -1,
        isPlaying: false
      };
 
@@ -44,6 +45,47 @@ class Album extends Component {
     }
   }
 
+  handleMouseEnter(index){
+    this.setState({mouseFocusSong:index});
+    //console.log("Enter " + index);
+  }
+
+  handleMouseLeave(){
+    //console.log("Exit ");
+    this.setState({mouseFocusSong:-1});
+  }
+
+  handleSongIcon(index){
+    if(this.state.mouseFocusSong === -1) {
+      if(this.state.album.songs[index] !== this.state.currentSong){
+        return index+1;
+      } else {
+        if(this.state.isPlaying){
+          return <span className="ion-pause">
+                    <ion-icon name="pause"></ion-icon>
+                </span>
+        } else {
+          return <span className="ion-play">
+            <ion-icon name="play"></ion-icon>
+          </span>
+        }
+      }
+      // case when mouse is focused on a song
+    } else {
+      if (this.state.album.songs[this.state.mouseFocusSong] === this.state.currentSong) {
+        if(this.state.isPlaying){
+          return <span className="ion-play">
+                    <ion-icon name="play"></ion-icon>
+                </span>
+        } else {
+          return <span className="ion-pause">
+            <ion-icon name="pause"></ion-icon>
+          </span>
+        }
+      }
+    }
+  }
+
   render() {
     return (
       <section className="album">
@@ -68,11 +110,11 @@ class Album extends Component {
               <th>Duration</th>
             </tr>
             {this.state.album.songs.map((song, index) =>
-              <tr className="song" key = {index} onClick={() => this.handleSongClick(song)}>
-                <td>{index+1}</td>
-                <td>{song.title}</td>
-                <td>{song.duration}</td>
-              </tr>
+                <tr className="song" key = {index} onClick={() => this.handleSongClick(song)} onMouseEnter = {() => this.handleMouseEnter(index)} onMouseLeave = {() => this.handleMouseLeave()}>
+                  <td>{this.handleSongIcon(index)}</td>
+                  <td>{song.title}</td>
+                  <td>{song.duration}</td>
+                </tr>
             )}
            </tbody>
          </table>
