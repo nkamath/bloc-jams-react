@@ -12,7 +12,7 @@ class Album extends Component {
      this.state = {
        album: album,
        currentSong: album.songs[0],
-       mouseFocusSong: -1,
+       mouseFocusIndex: -1,
        isPlaying: false
      };
 
@@ -46,43 +46,23 @@ class Album extends Component {
   }
 
   handleMouseEnter(index){
-    this.setState({mouseFocusSong:index});
-    //console.log("Enter " + index);
+    this.setState({mouseFocusIndex:index});
   }
 
   handleMouseLeave(){
-    //console.log("Exit ");
-    this.setState({mouseFocusSong:-1});
+    this.setState({mouseFocusIndex: -1});
   }
 
-  handleSongIcon(index){
-    if(this.state.mouseFocusSong === -1) {
-      if(this.state.album.songs[index] !== this.state.currentSong){
-        return index+1;
-      } else {
-        if(this.state.isPlaying){
-          return <span className="ion-pause">
-                    <ion-icon name="pause"></ion-icon>
-                </span>
-        } else {
-          return <span className="ion-play">
-            <ion-icon name="play"></ion-icon>
-          </span>
-        }
-      }
-      // case when mouse is focused on a song
+  handleSongIcon(index) {
+    const isElementFocused = index === this.state.mouseFocusIndex;
+    const isElementCurrentSong = this.state.album.songs[index] === this.state.currentSong;
+
+    if ((isElementFocused && !isElementCurrentSong) || (isElementCurrentSong && !this.state.isPlaying)) {
+      return <span className="ion-play"> <ion-icon name="play" /> </span>
+    } else if (this.state.isPlaying && isElementCurrentSong) {
+      return <span className="ion-pause"> <ion-icon name="pause" /> </span>
     } else {
-      if (this.state.album.songs[this.state.mouseFocusSong] === this.state.currentSong) {
-        if(this.state.isPlaying){
-          return <span className="ion-play">
-                    <ion-icon name="play"></ion-icon>
-                </span>
-        } else {
-          return <span className="ion-pause">
-            <ion-icon name="pause"></ion-icon>
-          </span>
-        }
-      }
+        return index + 1;
     }
   }
 
