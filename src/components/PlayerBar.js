@@ -11,7 +11,7 @@ import React, { Component } from 'react';
             <button id="play-pause" onClick={this.props.handleSongClick} >
               <span className={this.props.isPlaying ? "ion-pause" : "ion-play"}> <ion-icon name={this.props.isPlaying ? "pause" : "play"} /> </span>
             </button>
-            <button id="next">
+            <button id="next" onClick={this.props.handleNextClick}>
               <span className="ion-skip-forward"> <ion-icon name="skip-forward" /> </span>
             </button>
           </section>
