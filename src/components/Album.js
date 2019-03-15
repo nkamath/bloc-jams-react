@@ -124,7 +124,7 @@ class Album extends Component {
      } else {
        const minutes = Math.floor(timeInSeconds/60);
        const seconds = Math.floor(timeInSeconds % 60);
-       return minutes + ":" + seconds;
+       return minutes + ":" + (seconds > 9 ? "" + seconds : "0" + seconds);
      }
    }
 
@@ -155,7 +155,7 @@ class Album extends Component {
                 <tr className="song" key = {index} onClick={() => this.handleSongClick(song)} onMouseEnter = {() => this.handleMouseEnter(index)} onMouseLeave = {() => this.handleMouseLeave()}>
                   <td>{this.handleSongIcon(index)}</td>
                   <td>{song.title}</td>
-                  <td>{song.duration}</td>
+                  <td>{this.formatTime(song.duration)}</td>
                 </tr>
             )}
            </tbody>
