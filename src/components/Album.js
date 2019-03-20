@@ -82,9 +82,9 @@ class Album extends Component {
     const isElementCurrentSong = this.state.album.songs[index] === this.state.currentSong;
 
     if ((isElementFocused && !isElementCurrentSong) || (isElementCurrentSong && !this.state.isPlaying)) {
-      return <span className="ion-play"> <ion-icon name="play" /> </span>
+      return <span className="material-icons">play_circle_outline</span>
     } else if (this.state.isPlaying && isElementCurrentSong) {
-      return <span className="ion-pause"> <ion-icon name="pause" /> </span>
+      return <span className="material-icons">pause_circle_outline</span>
     } else {
         return index + 1;
     }

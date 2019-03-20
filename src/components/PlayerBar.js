@@ -7,13 +7,13 @@ import React, { Component } from 'react';
 
          <section id="buttons">
             <button id="previous" onClick={this.props.handlePrevClick}>
-              <span className="ion-skip-backward"> <ion-icon name="skip-backward" /> </span>
+              <span className="material-icons">skip_previous</span>
             </button>
             <button id="play-pause" onClick={this.props.handleSongClick} >
-              <span className={this.props.isPlaying ? "ion-pause" : "ion-play"}> <ion-icon name={this.props.isPlaying ? "pause" : "play"} /> </span>
+              <span className="material-icons"> {this.props.isPlaying ? "pause_circle_outline" : "play_circle_outline"} </span>
             </button>
             <button id="next" onClick={this.props.handleNextClick}>
-              <span className="ion-skip-forward"> <ion-icon name="skip-forward" /> </span>
+              <span className="material-icons">skip_next</span>
             </button>
           </section>
 
@@ -32,7 +32,7 @@ import React, { Component } from 'react';
           </section>
 
           <section id="volume-control">
-            <div className="icon ion-volume-low"> <ion-icon name="volume-low" /> </div>
+            <span className="material-icons">volume_mute</span>
             <input
               type="range"
               className="seek-bar"
@@ -42,7 +42,8 @@ import React, { Component } from 'react';
               step="0.01"
               onChange={this.props.handleVolumeChange}
             />
-            <div className="icon ion-volume-high"> <ion-icon name="volume-high" /> </div>
+            <span className="material-icons">volume_up</span>
+
           </section>
        </section>
      );
