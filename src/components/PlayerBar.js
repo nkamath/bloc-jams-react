@@ -6,13 +6,13 @@ import React, { Component } from 'react';
        <section className="player-bar">
 
          <section id="buttons">
-            <button id="previous" onClick={this.props.handlePrevClick}>
+            <button className="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" id="previous" onClick={this.props.handlePrevClick}>
               <span className="material-icons">skip_previous</span>
             </button>
-            <button id="play-pause" onClick={this.props.handleSongClick} >
+            <button className="mdl-button mdl-js-button mdl-button--icon mdl-button--colored"id="play-pause" onClick={this.props.handleSongClick} >
               <span className="material-icons"> {this.props.isPlaying ? "pause_circle_outline" : "play_circle_outline"} </span>
             </button>
-            <button id="next" onClick={this.props.handleNextClick}>
+            <button className="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" id="next" onClick={this.props.handleNextClick}>
               <span className="material-icons">skip_next</span>
             </button>
           </section>
@@ -21,7 +21,7 @@ import React, { Component } from 'react';
             <div className="current-time">{this.props.formatTime(this.props.currentTime)}</div>
             <input
               type="range"
-              className="seek-bar"
+              className="mdl-slider mdl-js-slider"
               value={(this.props.currentTime / this.props.duration) || 0}
               max="1"
               min="0"
@@ -32,18 +32,17 @@ import React, { Component } from 'react';
           </section>
 
           <section id="volume-control">
-            <span className="material-icons">volume_mute</span>
+            <i class="material-icons">volume_mute</i>
             <input
               type="range"
-              className="seek-bar"
+              className="mdl-slider mdl-js-slider"
               value={this.props.volume}
               max="1"
               min="0"
               step="0.01"
               onChange={this.props.handleVolumeChange}
             />
-            <span className="material-icons">volume_up</span>
-
+            <i class="material-icons">volume_up</i>
           </section>
        </section>
      );

@@ -9,7 +9,7 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div className="demo-layout-transparent mdl-layout mdl-js-layout">
+      <div className="App demo-layout-transparent mdl-layout mdl-js-layout">
           <header className="mdl-layout__header mdl-layout__header--transparent">
             <div className="mdl-layout__header-row">
               <span className="mdl-layout-title" >Bloc Jams</span>

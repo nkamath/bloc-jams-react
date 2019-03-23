@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import albumData from './../data/albums';
 import PlayerBar from './PlayerBar';
 
+import './Album.css';
+
 class Album extends Component {
   constructor(props) {
     super(props);
@@ -82,9 +84,9 @@ class Album extends Component {
     const isElementCurrentSong = this.state.album.songs[index] === this.state.currentSong;
 
     if ((isElementFocused && !isElementCurrentSong) || (isElementCurrentSong && !this.state.isPlaying)) {
-      return <span className="material-icons">play_circle_outline</span>
+      return <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored"><i class="material-icons">play_circle_outline</i></button>
     } else if (this.state.isPlaying && isElementCurrentSong) {
-      return <span className="material-icons">pause_circle_outline</span>
+      return <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored"><i class="material-icons">pause_circle_outline</i></button>
     } else {
         return index + 1;
     }
@@ -134,12 +136,12 @@ class Album extends Component {
         <section id="album-info">
           <img id="album-cover-art" src={this.state.album.albumCover} alt={this.state.album.title}/>
            <div className="album-details">
-             <h1 id="album-title">{this.state.album.title}</h1>
-             <h2 className="artist">{this.state.album.artist}</h2>
-             <div id="release-info">{this.state.album.releaseInfo}</div>
+             <h2 id="album-title">{this.state.album.title}</h2>
+             <h3 className="artist">{this.state.album.artist}</h3>
+             <h3 id="release-info">{this.state.album.releaseInfo}</h3>
            </div>
          </section>
-         <table id="song-list">
+         <table className="container" id="song-list">
            <colgroup>
              <col id="song-number-column" />
              <col id="song-title-column" />
