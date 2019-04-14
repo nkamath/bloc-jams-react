@@ -12,6 +12,5 @@
  }
  .root {
    flex-grow: 1;
-
-   justifyContent: 'space-evenly';
+   padding: 30px;
  }

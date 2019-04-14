@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import albumData from './../data/albums';
 import PlayerBar from './PlayerBar';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 import './Album.css';
 
@@ -132,50 +134,51 @@ class Album extends Component {
 
   render() {
     return (
-      <section className="album">
-        <section id="album-info">
-          <img id="album-cover-art" src={this.state.album.albumCover} alt={this.state.album.title}/>
-           <div className="album-details">
-             <h2 id="album-title">{this.state.album.title}</h2>
-             <h3 className="artist">{this.state.album.artist}</h3>
-             <h3 id="release-info">{this.state.album.releaseInfo}</h3>
-           </div>
-         </section>
-         <table className="container" id="song-list">
-           <colgroup>
-             <col id="song-number-column" />
-             <col id="song-title-column" />
-             <col id="song-duration-column" />
-           </colgroup>
-         <tbody>
-           <tr>
-              <th>Number</th>
-              <th>Title</th>
-              <th>Duration</th>
-            </tr>
-            {this.state.album.songs.map((song, index) =>
-                <tr className="song" key = {index} onClick={() => this.handleSongClick(song)} onMouseEnter = {() => this.handleMouseEnter(index)} onMouseLeave = {() => this.handleMouseLeave()}>
-                  <td>{this.handleSongIcon(index)}</td>
-                  <td>{song.title}</td>
-                  <td>{this.formatTime(song.duration)}</td>
+      <div className="album">
+        <Grid container spacing ={24}>
+          <Grid item id="album-info">
+            <img id="album-cover-art" src={this.state.album.albumCover} alt={this.state.album.title}/>
+             <div className="album-details">
+               <Typography variant="h4" id="album-title">{this.state.album.title}</Typography>
+               <Typography variant="h5" className="artist">{this.state.album.artist}</Typography>
+               <Typography variant="h5" id="release-info">{this.state.album.releaseInfo}</Typography>
+             </div>
+           </Grid>
+           <Grid item>
+             <table className="container" id="song-list">
+             <tbody>
+               <tr>
+                  <th>Number</th>
+                  <th>Title</th>
+                  <th>Duration</th>
                 </tr>
-            )}
-           </tbody>
-         </table>
-         <PlayerBar
-           isPlaying={this.state.isPlaying}
-           currentSong={this.state.currentSong}
-           handleSongClick={() => this.handleSongClick(this.state.currentSong)}
-           handlePrevClick={() => this.handlePrevClick()}
-           handleNextClick={() => this.handleNextClick()}
-           currentTime={this.audioElement.currentTime}
-           duration={this.audioElement.duration}
-           handleTimeChange={(e) => this.handleTimeChange(e)}
-           volume={this.audioElement.volume}
-           handleVolumeChange={(e) => this.handleVolumeChange(e)}
-           formatTime = {this.formatTime}
-         />
-      </section>
+                {this.state.album.songs.map((song, index) =>
+                    <tr className="song" key = {index} onClick={() => this.handleSongClick(song)} onMouseEnter = {() => this.handleMouseEnter(index)} onMouseLeave = {() => this.handleMouseLeave()}>
+                      <td>{this.handleSongIcon(index)}</td>
+                      <td>{song.title}</td>
+                      <td>{this.formatTime(song.duration)}</td>
+                    </tr>
+                )}
+               </tbody>
+             </table>
+           </Grid>
+           <Grid item>
+             <PlayerBar
+               isPlaying={this.state.isPlaying}
+               currentSong={this.state.currentSong}
+               handleSongClick={() => this.handleSongClick(this.state.currentSong)}
+               handlePrevClick={() => this.handlePrevClick()}
+               handleNextClick={() => this.handleNextClick()}
+               currentTime={this.audioElement.currentTime}
+               duration={this.audioElement.duration}
+               handleTimeChange={(e) => this.handleTimeChange(e)}
+               volume={this.audioElement.volume}
+               handleVolumeChange={(e) => this.handleVolumeChange(e)}
+               formatTime = {this.formatTime}
+             />
+         </Grid>
+       </Grid>
+     </div>
     );
   }
 }

@@ -27,7 +27,7 @@ const { classes } = props;
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
+          <Typography component = {Link} to='/' variant="h5" color="inherit" className={classes.grow}>
             Old Town Jams
           </Typography>
           <Button component = {Link} to='/' color="inherit">Home</Button>

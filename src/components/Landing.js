@@ -15,7 +15,8 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     alignItems: 'stretch',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
+    margin: 50
   },
   card: {
     maxWidth: 345,
