@@ -5,10 +5,21 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
+import { teal } from '@material-ui/core/colors'
+
+const theme = createMuiTheme({
+  palette: {
+    primary: teal
+  }
+})
+
 ReactDOM.render(
-   <BrowserRouter>
-     <App />
-   </BrowserRouter>
+  <MuiThemeProvider theme={theme}>
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+  </MuiThemeProvider>
    , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
